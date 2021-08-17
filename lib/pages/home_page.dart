@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:music_player/model/radio.dart';
 import 'package:music_player/utils/ai_util.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -8,7 +10,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+ List<MyRadio> radios;
   @override
+  void initState(){
+    super.initState();
+    fetchRadios();
+  }
+  fetchRadios() async{
+    final radioJson = await rootBundle.loadString("assets/jsonfiles/radio.json");
+    radios = MyRadioList.fromJson(radioJson).radios;
+    print(radios);
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(),
