@@ -10,18 +10,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
- List<MyRadio> radios;
+  List<MyRadio> radios;
   @override
-  void initState(){
+  void initState() {
     super.initState();
     fetchRadios();
   }
-  fetchRadios() async{
-    final radioJson = await rootBundle.loadString("assets/jsonfiles/radio.json");
+
+  fetchRadios() async {
+    final radioJson =
+        await rootBundle.loadString("assets/jsonfiles/radio.json");
     radios = MyRadioList.fromJson(radioJson).radios;
     print(radios);
+    setState(() {});
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(),
@@ -49,7 +52,34 @@ class _HomePageState extends State<HomePage> {
             elevation: 0.0,
             centerTitle: true,
           ).h(100).p16(),
+          VxSwiper.builder(
+            itemCount: radios.length,
+            aspectRatio: 1.0,
+            enlargeCenterPage: true,
+            itemBuilder: (context, index) {
+              final rad = radios[index];
+              return VxBox(
+                child: ZStack([]),
+              )
+                  .bgImage(
+                    DecorationImage(
+                      image: NetworkImage(rad.image),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(0.3),
+                        BlendMode.darken,
+                      ),
+                      
+                    ),
+                  ).withRounded(value: 60.0)
+                  .border(color: Colors.black,width: 5.0)
+                  .make()
+                  .p16()
+                  .centered();
+            },
+          )
         ],
+        fit: StackFit.expand,
       ),
     );
   }
