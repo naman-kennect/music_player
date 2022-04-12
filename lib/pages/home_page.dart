@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               )
               .make(),
           AppBar(
-            title: "BeatFul".text.xl4.bold.white.make().shimmer(
+            title: "VibeZy".text.xl4.bold.white.make().shimmer(
                   primaryColor: Vx.cyan100,
                   secondaryColor: Colors.white,
                 ),
