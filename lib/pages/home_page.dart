@@ -1,10 +1,11 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 import 'package:music_player/model/radio.dart';
 import 'package:music_player/utils/ai_util.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     fetchRadios();
 
     _audioPlayer.onPlayerStateChanged.listen((event) {
-      if (event == AudioPlayerState.PLAYING) {
+      if (event == PlayerState.PLAYING) {
         _isPlaying = true;
       } else {
         _isPlaying = false;
