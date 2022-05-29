@@ -68,6 +68,16 @@ class _HomePageState extends State<HomePage> {
         radios.insert(0, newRadio);
         _playMusic(newRadio.url);
         break;
+      
+      case "Genre":
+        final id = response["id"];
+        // _audioPlayer.pause();
+        MyRadio newRadio = radios.firstWhere((element) => element.id == id);
+        radios.remove(newRadio);
+        radios.insert(0, newRadio);
+        _playMusic(newRadio.url);
+        break;
+
 
       case "stop":
         _audioPlayer.stop();
